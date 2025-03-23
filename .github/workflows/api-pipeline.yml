@@ -1,0 +1,28 @@
+name: API pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Git checkout
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install Newman
+        run: |
+          npm install -g newman 
+
+      - name: Run Postman Collection Tests
+        run: |
+          newman run postman/SpriteCloud.postman_collection.json  
