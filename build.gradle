@@ -5,6 +5,12 @@ repositories {
     mavenCentral()
 }
 
+test {
+    useTestNG {
+        suites 'src/test/resources/testng.xml'
+    }
+}
+
 dependencies {
     // Selenium WebDriver
     implementation 'org.seleniumhq.selenium:selenium-java:4.21.0'
